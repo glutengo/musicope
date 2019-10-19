@@ -2,10 +2,17 @@ interface Dictionary<T> {
     [Key: string]: T;
 }
 
-export class Sound {
+export interface ISound {
+
+  start(id: number): void;
+  stop(id: number): void;
+  stop_all(): void;
+}
+
+export class Sound implements ISound {
     synthkeys: Dictionary<OscillatorNode>;
-    context: AudioContext;
     active: Dictionary<boolean>;
+    context: AudioContext;
 
     public constructor() {
         this.synthkeys = {};
@@ -20,12 +27,12 @@ export class Sound {
         }
     }
 
-    start(id) {
+    start(id: number) {
         this.synthkeys[id].connect(this.context.destination);
         this.active[id] = true;
     }
 
-    stop(id) {
+    stop(id: number) {
         if (this.active[id] == true) {
             this.synthkeys[id].disconnect(this.context.destination);
         }

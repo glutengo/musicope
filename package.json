@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "express": "^4.16.3",
+    "tone": "^13.8.25",
     "typescript": "^2.8.1"
   }
 }

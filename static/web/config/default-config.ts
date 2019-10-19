@@ -1,4 +1,5 @@
 import { IConfig } from "./i-config"
+import { TuneScale } from "../game/scene/tune-scale"
 
 export let defaultConfig: IConfig = {
 
@@ -59,7 +60,9 @@ export let defaultConfig: IConfig = {
     s_colUnPaused: "#0d0c0c",
     s_colUnPlayedNotes: "#808080",
     s_colOutOfReachNotes: "#ff5252",
-    s_colUnPlayedNotesInReach: "#00ff90"
+    s_colUnPlayedNotesInReach: "#00ff90",
+    s_useTune: true,
+    s_tuneScale: TuneScale.JI_12
 }
 
 export function set(config: IConfig) {

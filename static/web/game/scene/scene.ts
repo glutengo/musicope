@@ -4,9 +4,10 @@ import {Song} from "../song/song"
 import {WebGL} from "./webgl"
 import {drawScene} from "./draw-scene"
 import {hexToRgb, IDrawRect} from "./utils"
-import {Sound} from "./sound"
+import {Sound, ISound} from "./sound"
+import { TuneSound } from "./tune-sound"
 
-let sound = new Sound();
+let sound: ISound = new (config.s_useTune ? TuneSound : Sound)();
 
 function concat(arrays: Float32Array[]) {
     const result = (() => {

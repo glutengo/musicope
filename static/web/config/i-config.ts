@@ -1,3 +1,5 @@
+import { TuneScale } from "../game/scene/tune-scale";
+
 export interface IConfig {
 
     [key: string]: any
@@ -55,6 +57,8 @@ export interface IConfig {
     s_colUnPlayedNotes: string
     s_colOutOfReachNotes: string
     s_colUnPlayedNotesInReach: string
+    s_useTune: boolean
+    s_tuneScale: TuneScale
 
     // parsers
     f_normalize: number
