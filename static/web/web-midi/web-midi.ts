@@ -30,8 +30,11 @@ class WebMidi {
 
     inOpen = (callback: (timestamp: number, data1: number, data2: number, data3: number) => void) => {
         const o = this
-        o.input = o.midi.inputs.get('input-' + config.p_deviceIn)
+        o.midi.inputs.forEach((port, key) => {
+          o.input = port
+        })
         if (o.input) {
+            o.input.open()
             o.input.onmidimessage = (e: any) => {
                 callback(e.timeStamp, e.data[0], e.data[1], e.data[2])
             }
