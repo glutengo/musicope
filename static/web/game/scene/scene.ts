@@ -73,6 +73,11 @@ export class Scene {
         const dy2 = Math.ceil(dy / 1.1) * 1.1
         //console.log(dy, dy2)
         o.webgl.redraw(dx, dy, o.activeIds)
+        if (isPaused) {
+            sound.pause();
+        } else {
+            sound.resume();
+        }
     }
 
     public addUID(uid: number, handID: number) {
