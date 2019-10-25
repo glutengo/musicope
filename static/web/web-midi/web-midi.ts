@@ -1,4 +1,4 @@
-import { config } from "../config/config"
+import {config} from "../config/config"
 
 class WebMidi {
 
@@ -31,7 +31,9 @@ class WebMidi {
     inOpen = (callback: (timestamp: number, data1: number, data2: number, data3: number) => void) => {
         const o = this
         o.midi.inputs.forEach((port, key) => {
-          o.input = port
+            if (!o.input) {
+                o.input = port
+            }
         })
         if (o.input) {
             o.input.open()

@@ -1,6 +1,6 @@
 import * as $ from 'jquery'
 
-import { config } from "../config/config"
+import {config, setParam} from "../config/config"
 import { webMidi } from "../web-midi/web-midi"
 import { readBinaryFileAsString } from "../io/io"
 
@@ -9,6 +9,7 @@ import { Metronome } from "./metronome/metronome"
 import { Song } from "./song/song"
 import { Player } from "./player/player"
 import { Scene } from "./scene/scene"
+import {displayMessage} from './keyboard/keyboard-overlay'
 
 export class Game {
 
@@ -41,6 +42,13 @@ export class Game {
         o.player = new Player(o.song, o.metronome, o.scene)
         o.keyboard = new Keyboard(o.song)
         o.step()
+        if (new AudioContext().state === 'suspended') {
+            setParam('p_isPaused', true);
+        }
+
+        if (config.p_isPaused) {
+            displayMessage('Press space to start');
+        }
     }
 
     private step() {

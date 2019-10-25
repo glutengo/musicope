@@ -12,6 +12,16 @@ export function display(description: string, value: any) {
 
     $('.canvasInfoDesc').text(description + ": ")
     $('.canvasInfoValue').text(str)
+    showOverlay()
+}
+
+export function displayMessage(message: string) {
+    $('.canvasInfoDesc').text(message)
+    $('.canvasInfoValue').text('')
+    showOverlay();
+}
+
+function showOverlay() {
     $('.canvasInfo').show()
     clearTimeout(oldTimeOut)
     oldTimeOut = setTimeout(() => {
