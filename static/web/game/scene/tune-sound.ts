@@ -32,14 +32,14 @@ export class TuneSound implements ISound {
         this.context = new AudioContext()
     }
 
-    start(id: number): void {
+    start(id: number, velocity?: number): void {
         if (this.pianos[id]) {
-            this.pianos[id].triggerAttack(BASE_NOTE)
+            this.pianos[id].triggerAttack(BASE_NOTE, null, velocity/100)
             window.clearTimeout(this.pianos[id].timeout)
         }
     }
 
-    stop(id: number): void {
+    stop(id: number, velocity?: number): void {
         if (this.pianos[id]) {
             const playLength = (Date.now() - this.notes[id]) > MINIMUM_PLAY_LENGTH ? 0 : MINIMUM_PLAY_LENGTH
             this.pianos[id].timeout = setTimeout(() => this.pianos[id].triggerRelease(), playLength)

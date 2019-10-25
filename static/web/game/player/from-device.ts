@@ -41,10 +41,10 @@ export class FromDevice {
         const isNoteOn = kind === 144 && velocity > 0
         const isNoteOff = kind === 128 || (kind === 144 && velocity == 0)
         if (isNoteOn && !o.isDoubleNote(timeStamp, isNoteOn, noteId, velocity)) {
-            o.scene.setPianoActiveId(noteId)
+            o.scene.setPianoActiveId(noteId, velocity)
             execNoteOnFuncs(o.noteOnFuncs, noteId)
         } else if (isNoteOff) {
-            o.scene.unsetPianoActiveId(noteId)
+            o.scene.unsetPianoActiveId(noteId, velocity)
         }
     }
 

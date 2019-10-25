@@ -4,9 +4,9 @@ export interface Dictionary<T> {
 
 export interface ISound {
 
-    start(id: number): void
+    start(id: number, velocity?: number): void
 
-    stop(id: number): void
+    stop(id: number, velocity?: number): void
 
     stop_all(): void
 
@@ -33,12 +33,12 @@ export class Sound implements ISound {
         }
     }
 
-    start(id: number | string) {
+    start(id: number | string, velocity?: number) {
         this.synthkeys[id].connect(this.context.destination)
         this.active[id] = true
     }
 
-    stop(id: number | string) {
+    stop(id: number | string, velocity?: number) {
         if (this.active[id] == true) {
             this.synthkeys[id].disconnect(this.context.destination)
         }

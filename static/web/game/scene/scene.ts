@@ -46,13 +46,13 @@ export class Scene {
         o.setupHandsVisibility()
     }
 
-    public setPianoActiveId(id: number) {
-        sound.start(id);
+    public setPianoActiveId(id: number, velocity?: number) {
+        sound.start(id, velocity);
         this.activeIds[id] = 1
     }
 
-    public unsetPianoActiveId(id: number) {
-        sound.stop(id);
+    public unsetPianoActiveId(id: number, velocity?: number) {
+        sound.stop(id, velocity);
         this.activeIds[id] = 0
     }
 
