@@ -13,9 +13,8 @@ export class TuneSound implements ISound {
     tune: any
     // TODO: piano type
     pianos: Dictionary<any> = {};
-    context: AudioContext
-
     notes: any = {};
+    paused = false;
 
     constructor() {
         this.tune = new Tune()
@@ -29,7 +28,6 @@ export class TuneSound implements ISound {
             this.pianos[note].toMaster()
             this.pianos[note].pitch = this.tune.note(note - this.tune.scale.length) - this.tune.key
         }
-        this.context = new AudioContext()
     }
 
     start(id: number, velocity?: number): void {
@@ -53,11 +51,21 @@ export class TuneSound implements ISound {
     }
 
     pause() {
-        this.context.suspend();
+        if (!this.paused) {
+            for (let note in this.pianos) {
+                this.pianos[note].output.context.suspend();
+            }
+            this.paused = true;
+        }
     }
 
     resume() {
-        this.context.suspend();
+        if (this.paused) {
+            for (let note in this.pianos) {
+                this.pianos[note].output.context.resume();
+            }
+            this.paused = false;
+        }
     }
 
 
